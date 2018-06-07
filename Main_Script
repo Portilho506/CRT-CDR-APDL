@@ -1,0 +1,66 @@
+FINISH
+/CLEAR
+/BATCH
+
+!/CWD,'directory path here'
+/TITLE, GAMA_I_CDR
+/FILNAME,CRT_COBRUF_1,1
+
+!*********************************************
+	!Graphics Options
+
+!/PNUM,KP,1
+!/PNUM,LINE,1
+!/PNUM,ELEM,1
+!/PNUM,AREA,1
+!/ESHAPE,1,1
+
+/PREP7
+!********** Biblioteca de Elementos **********
+ET,1,BEAM188
+
+!********** Parametros dos Elementos **********
+R1=12.7E-3
+E1=3.0E-3
+SECTYPE,1,BEAM,CTUBE  
+SECDATA,(R1-E1),R1
+
+!********** Biblioteca de Materiais **********
+!Aco 1020
+MP,EX,1,210E9		! Modulo de Elasticidade Longitudinal em Pa
+MP,PRXY,1,0.33		! Coeficiente de Poisson
+MP,DENS,1,7798    ! Massa especifica
+
+!********** Geometria do Modelo **********
+K,1,0,0,0
+K,2,1,0,0
+
+L,1,2
+
+!********** Meshing **********
+TYPE,1
+SECNUM,1
+MAT,1
+
+LESIZE,ALL,5E-3
+LMESH,1
+
+/SOLU
+ANTYPE,0
+
+BC1 = NODE(0,0,0)
+BC2 = NODE(1,0,0)
+
+D,BC1,ALL
+F,BC2,FY,-1000
+
+SOLVE
+FINISH
+
+/POST1
+
+ETABLE,Qxy_i,SMISC,6	! Esforço Cortante
+ETABLE,Qxy_j,SMISC,19
+PLLS,Qxy_i,Qxy_j,1,0
+
+!/POST2
