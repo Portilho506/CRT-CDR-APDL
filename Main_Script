@@ -18,12 +18,16 @@ FINISH
 /PREP7
 !********** Biblioteca de Elementos **********
 ET,1,BEAM188
+ET,2,SHELL281
 
 !********** Parametros dos Elementos **********
 R1=12.7E-3
 E1=3.0E-3
 SECTYPE,1,BEAM,CTUBE  
 SECDATA,(R1-E1),R1
+
+SECTYPE,2,SHELL
+SECDATA,2E-3,1
 
 !********** Biblioteca de Materiais **********
 !Aco 1020
