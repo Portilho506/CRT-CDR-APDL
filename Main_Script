@@ -37,17 +37,14 @@ SECDATA,EN,1,90
 
 !********** Geometria do Modelo **********
 
+
 !********** Meshing **********
 
 FINISH
 /SOLU
 ANTYPE,0
 
-
-
 FINISH
 !/POST1
-
-
 
 !/POST2
