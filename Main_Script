@@ -14,62 +14,40 @@ FINISH
 !/PNUM,ELEM,1
 !/PNUM,AREA,1
 !/ESHAPE,1,1
+!/PSYMB,ESYS,1
 
 /PREP7
 !********** Biblioteca de Elementos **********
-ET,1,BEAM188
-ET,2,SHELL281
-
-!********** Parametros dos Elementos **********
-R1=12.7E-3
-E1=3.0E-3
-SECTYPE,1,BEAM,CTUBE  
-SECDATA,(R1-E1),R1
-
-SECTYPE,2,SHELL
-SECDATA,2E-3,1
+ET,1,SHELL281
 
 !********** Biblioteca de Materiais **********
-!Aco 1020
-MP,EX,1,210E9		! Modulo de Elasticidade Longitudinal em Pa
-MP,PRXY,1,0.33		! Coeficiente de Poisson
-MP,DENS,1,7798    ! Massa especifica
+!Fibra de Vidro
+MP,EX,1,72.5E9		! Modulo de Elasticidade Longitudinal em Pa
+MP,PRXY,1,0.22		! Coeficiente de Poisson
+MP,DENS,1,2580    	! Massa especifica
 
-!Propelente
-MP,EX,1,10E6		! Modulo de Elasticidade Longitudinal em Pa
-MP,PRXY,1,0.33		! Coeficiente de Poisson
-MP,DENS,1,2500		! Massa especifica
+!********** Parametros dos Elementos **********
+SECTYPE,1,SHELL
+EN = 0.31e-3	!Espessura Nominal
+SECDATA,EN,1,90
+SECDATA,EN,1,0
+SECDATA,EN,1,90
+SECDATA,EN,1,0
+SECDATA,EN,1,90
 
 !********** Geometria do Modelo **********
-K,1,0,0,0
-K,2,1,0,0
-
-L,1,2
 
 !********** Meshing **********
-TYPE,1
-SECNUM,1
-MAT,1
 
-LESIZE,ALL,5E-3
-LMESH,1
-
+FINISH
 /SOLU
 ANTYPE,0
 
-BC1 = NODE(0,0,0)
-BC2 = NODE(1,0,0)
 
-D,BC1,ALL
-F,BC2,FY,-1000
 
-SOLVE
 FINISH
+!/POST1
 
-/POST1
 
-ETABLE,Qxy_i,SMISC,6	! Esforço Cortante
-ETABLE,Qxy_j,SMISC,19
-PLLS,Qxy_i,Qxy_j,1,0
 
 !/POST2
