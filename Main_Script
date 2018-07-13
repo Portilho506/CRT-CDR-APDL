@@ -14,16 +14,26 @@ FINISH
 !/PNUM,ELEM,1
 !/PNUM,AREA,1
 !/ESHAPE,1,1
+!/PSYMB,ESYS,1
 
 /PREP7
 !********** Biblioteca de Elementos **********
-!ET,1,BEAM188
-
-!********** Parametros dos Elementos **********
-
+ET,1,SHELL281
 
 !********** Biblioteca de Materiais **********
+!Fibra de Vidro
+MP,EX,1,72.5E9		! Modulo de Elasticidade Longitudinal em Pa
+MP,PRXY,1,0.22		! Coeficiente de Poisson
+MP,DENS,1,2580    	! Massa especifica
 
+!********** Parametros dos Elementos **********
+SECTYPE,1,SHELL
+EN = 0.31e-3	!Espessura Nominal
+SECDATA,EN,1,90
+SECDATA,EN,1,0
+SECDATA,EN,1,90
+SECDATA,EN,1,0
+SECDATA,EN,1,90
 
 !********** Geometria do Modelo **********
 
@@ -32,9 +42,9 @@ FINISH
 
 FINISH
 /SOLU
+ANTYPE,0
 
-
-/POST1
-
+FINISH
+!/POST1
 
 !/POST2
